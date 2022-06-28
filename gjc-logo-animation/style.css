@@ -21,26 +21,17 @@ body {
   font-family: CabinetGrotesk-Bold, sans-serif, Arial;
   background-color: var(--dusk);
   width: 100%;
-  /* font-size: 16px; */
   line-height: 1.5;
-  /* min-height: 6000px; */
-  /* margin: 400px 0 0 0;  */
   color: var(--scout-hall);
+  -webkit-text-size-adjust: none;
 }
 
-h2, h3 span {
-  /* color: var(--dusk); */
+section h2, section h3 span, section p {
   transform: rotate(-15deg);
   background-color: none;
   display: block;
 }
 
-section {
-  padding-top: 50px;
-  padding-bottom: 300px;
-  width:300px
-  /* border-top: 1px solid var(--dusk); */
-}
 
 h2 {
   font-size: 1.625rem;
@@ -55,24 +46,12 @@ h3 {
 h3 span {
   font-size: 2.875rem;
   font-weight: 700;
-
   margin: 0px;
   padding: 0px;
   line-height: 0.9;
 }
 
-@keyframes bounce {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(60deg); }
-  100% { transform: rotate(0deg); }
-}
-
-/* @keyframes spin {
-  0% { transform: rotate(0deg) translate(-50%, -50%); }
-  100% { transform: rotate(360deg) translate(-50%, -50%); }
-} */
-
-.bg-container{
+.logo-bg-container{
   position: fixed;
   top: 0px;
   width: 100%;
@@ -80,15 +59,30 @@ h3 span {
   overflow: hidden;
   background-color: var(--scout-hall);
   transform: skew(0,-15deg) translateY(-120px);
-  /* z-index: -1; */
 }
 
 .logo {
   position: fixed;
-  left:20px;
+  left:30px;
   top:20px;
   width:200px;
   /* transform: translateX(-50%); */
+}
+
+.logo-bg-pattern {
+  width: 145vmax;
+  height: 145vmax;
+  max-width: 2000px;
+  max-height: 2000px;
+  position: fixed;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  top:120px;
+  left:130px;
+  transform: rotate(0deg) translate(-50%, -50%);
+  transform-origin: 0 0;
+  background-image: url("images/gjc-pattern.svg");
+  background-repeat: no-repeat;
 }
 
 .banner {
@@ -97,13 +91,13 @@ h3 span {
   top: 230px;
   left: -20px;
   transform: rotate(-15deg);
-  padding: 10px 40px;
+  padding: 10px 50px;
   width: calc(100% + 40px);
 }
 
 .banner p {
   color: var(--dusk);
-  width: 300%;
+  width: 400%;
   font-size: 0.875em;
 }
 
@@ -116,30 +110,27 @@ h3 span {
   margin-left: 20px;
 }
 
-#bg {
-  width: 145vmax;
-  height: 145vmax;
-  max-width: 2000px;
-  max-height: 2000px;
-  position: fixed;
-  mix-blend-mode: multiply;
-  opacity: 0.6;
-  top:120px;
-  left:120px;
-  transform: rotate(0deg) translate(-50%, -50%);
-  transform-origin: 0 0;
-  background-image: url("images/gjc-pattern.svg");
-  background-repeat: no-repeat;
-  /* animation: spin 80s linear infinite; */
-}
-
 .content-container{
   width: 100%;
   overflow: hidden;
-  display: grid;
-  justify-content: center;
+  /* display: grid;
+  justify-content: center; */
   background-color: var(--dusk);
-  padding-top:320px;
+  padding-top: 320px;
+  padding-left: 30px;
+}
+
+section {
+  padding-top: 50px;
+  padding-bottom: 300px;
+  width: 100%;
+}
+
+
+@keyframes bounce {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(60deg); }
+  100% { transform: rotate(0deg); }
 }
 
 #Face {
@@ -148,11 +139,11 @@ h3 span {
 }
 
 @keyFrames fadeIn {
-  0% { opacity: 0; transform: translate(80px, 80px) rotate(0deg);}
-  100% { opacity: 1; transform: translate(0px, 0px) rotate(-15deg);}
+  0% { opacity: 0; transform: translate(80px, 80px) rotate(0deg); }
+  100% { opacity: 1; transform: translate(0px, 0px) rotate(-15deg); }
 }
 
 @keyFrames fadeOut {
-  0% { opacity: 1; transform: translate(0px, 0px) rotate(-15deg);}
-  100% { opacity: 0; transform: translateX(80px, 80px) rotate(0deg);}
+  0% { opacity: 1; transform: translate(0px, 0px) rotate(-15deg); }
+  100% { opacity: 0; transform: translateX(80px, 80px) rotate(0deg); }
 }

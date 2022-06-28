@@ -9,7 +9,6 @@ const fadeIn = function () {
 	animatedTags.forEach(tag => {
 		tag.style.opacity = 0
 	})
-	// const 
 	const sectionTop = section.getBoundingClientRect().top
 	const sectionBottom = section.getBoundingClientRect().bottom
 		
@@ -18,11 +17,8 @@ const fadeIn = function () {
 	  animatedTags.forEach(tag => {
 		tag.style.animation = `fadeIn 0.3s ${delay}s both`
 		delay += 0.1
-		// console.log(delay)
 	  })      
 	} else {
-	  // tag.style.opacity = 0
-	  // delay = 0.4
 	  animatedTags.forEach(tag => {
 		tag.style.animation = `fadeOut 0.2s 0s both`
 	  })
