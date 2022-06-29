@@ -1,6 +1,6 @@
 const logo = document.getElementById("svg-logo")
 const bg = document.querySelector(".logo-bg-pattern")
-const bannerText = document.querySelector(".banner p")
+const bannerText = document.querySelector(".banner-text")
 
 // const bg = document.getElementsByClassName("bg")
 
