@@ -1,6 +1,14 @@
 const logo = document.getElementById("svg-logo")
+const bg = document.querySelector(".logo-bg-pattern")
+const bannerText = document.querySelector(".banner-text")
+
+// const bg = document.getElementsByClassName("bg")
+
+// console.log(bannerText)
 
 const logoElements = []
+
+
 
 logo.addEventListener("load",function(){
 
@@ -16,7 +24,10 @@ logo.addEventListener("load",function(){
 	
 })
 
+
 function addScrollBehaviour(){
+
+	let element = null
 
 	for(element in logoElements){
 		logoElements[element].style.transformOrigin = '50% 50%'
@@ -34,7 +45,12 @@ function addScrollBehaviour(){
 			elementIndex += 1
 			
 			// rotate each element by a multiple of 360 × the scroll position
-			logoElements[element].style.transform = 'rotate(' + (scrollPosition * (1 - fullRotation) * elementIndex) + 'deg)';
+			logoElements[element].style.transform = 'rotate(' + (scrollPosition * (0 - fullRotation) * elementIndex) + 'deg)';
 		}
+
+		bg.style.transform = 'rotate(' + (scrollPosition * 40) + 'deg) translate(-50%, -50%)';
+		bannerText.style.transform = 'translate(' + (0-(scrollPosition * 65)) + '%)';
+
+		
 	})
 }
