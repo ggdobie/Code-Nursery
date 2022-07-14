@@ -1,16 +1,3 @@
-/* :root {
-  // variables
-} */
-
-/* @font-face {
-  font-family: 'Anybody';
-  src: url('CabinetGrotesk-Variable.woff') format('woff');
-  font-style: normal;
-} */
-
-/* @import url('https://fonts.googleapis.com/css2?family=Anybody&display=swap'); */
-
-
 @font-face {
   font-family: 'Anybody Variable';
   src: url('anybody-variable.woff2') format('woff2');
@@ -33,7 +20,6 @@ body {
 	align-items:center;
 }
 
-
 .container {
   text-align: center;
   width: 240px;
@@ -42,8 +28,6 @@ body {
   display:grid;
   justify-content:center;
   align-items:center;
-  
-  /* background-color: grey; */
 }
 
 .silcrow {
@@ -51,21 +35,4 @@ body {
   --width: 50;
   font-variation-settings: 'wght' var(--weight), 'wdth' var(--width);
   transition: 1s;
-  /* animation: breathe 4000ms infinite both; */
 }
-
-/* @keyframes breathe {
-  0% {
-    font-variation-settings: 'wght' 100, 'wdth' 85;
-    font-size: 10vw;
-  }
-  60% {
-    font-variation-settings: 'wght' 700, 'wdth' 200;
-    font-size: 11vw;
-  }
-  
-  100% {
-    font-variation-settings: 'wght' 100, 'wdth' 85;
-    font-size: 10vw;
-  }
-} */
