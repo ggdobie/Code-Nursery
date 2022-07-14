@@ -1,0 +1,71 @@
+/* :root {
+  // variables
+} */
+
+/* @font-face {
+  font-family: 'Anybody';
+  src: url('CabinetGrotesk-Variable.woff') format('woff');
+  font-style: normal;
+} */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Anybody&display=swap'); */
+
+
+@font-face {
+  font-family: 'Anybody Variable';
+  src: url('anybody-variable.woff2') format('woff2');
+  font-style: normal;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-size: 150px;
+  font-family: Anybody Variable;
+
+  width: 100%;
+	height: 100%;
+
+	display:grid;
+	justify-content:center;
+	align-items:center;
+}
+
+
+.container {
+  text-align: center;
+  width: 240px;
+  height: 240px;
+  
+  display:grid;
+  justify-content:center;
+  align-items:center;
+  
+  /* background-color: grey; */
+}
+
+.silcrow {
+  --weight: 800;
+  --width: 50;
+  font-variation-settings: 'wght' var(--weight), 'wdth' var(--width);
+  transition: 1s;
+  /* animation: breathe 4000ms infinite both; */
+}
+
+/* @keyframes breathe {
+  0% {
+    font-variation-settings: 'wght' 100, 'wdth' 85;
+    font-size: 10vw;
+  }
+  60% {
+    font-variation-settings: 'wght' 700, 'wdth' 200;
+    font-size: 11vw;
+  }
+  
+  100% {
+    font-variation-settings: 'wght' 100, 'wdth' 85;
+    font-size: 10vw;
+  }
+} */
