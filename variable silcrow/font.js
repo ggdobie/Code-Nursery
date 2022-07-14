@@ -9,7 +9,7 @@ function randomRoundNumber(min, max) {
 }
 
 function checkFont() {
-  return window.getComputedStyle(silcrow, null).getPropertyValue('font-family');
+    return window.getComputedStyle(silcrow, null).getPropertyValue('font-family');
 }
 
 let interval = null
@@ -18,7 +18,7 @@ const startInterval = function () {
   interval = setInterval(() => {
     
     const silcrowFont = checkFont()
-    const fontToVerify = '\'' + 'Anybody Variable' + '\''
+    const fontToVerify = '\"' + 'Anybody Variable' + '\"'
     
     if (silcrowFont == fontToVerify) {
       silcrow.style.setProperty('--weight', randomRoundNumber(100, 900))
