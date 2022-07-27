@@ -18,14 +18,41 @@ function mapAndClamp(value, low1, high1, low2, high2) {
   )
 }
 
-const fadeLogos = function() {
+const fadeAndMoveLogos = function() {
+	const yPositionTop = window.pageYOffset
 	const containerWidth = container.offsetWidth
 	const containerMidPoint = containerWidth / 2
 	const containerYPos = container.getBoundingClientRect().top
 	const containerXPos = container.getBoundingClientRect().left
 	
-	rows.forEach((logoRow) => {
+	const totalHeight = bodyTag.getBoundingClientRect().height - window.innerHeight
+	
+
+	
+	rows.forEach((logoRow, index) => {
 		
+		const rowWidth = logoRow.getBoundingClientRect().width
+		const numberOfLogos = logoRow.querySelectorAll("img")
+		
+		if (index == 1 || index == 2 ) {
+			delay = 0.9
+		}
+		else {
+			delay = 1.5
+		}
+		
+		
+		movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (rowWidth / 4), (rowWidth / 4))
+		
+		// REVERSE DIRECTION OF  EVERY SECOND ROW
+		if (index % 2 === 0) {
+			movement = 0 - movement
+		}
+		
+		// MOVE THE ROWS
+		logoRow.style.transform = `translateX(${movement * delay}px)`
+		
+		// FADE LOGOS DEPENDING ON THEIR PROXIMITY TO THE CENTRE
 		const logos = logoRow.querySelectorAll("img")
 		logos.forEach((logo) => {
 			logoVertCenter = logo.getBoundingClientRect().width / 2	
@@ -37,65 +64,18 @@ const fadeLogos = function() {
 				logoDelta = 0 - logoDelta
 			}
 			
-			targetOpacity = mapAndClamp(logoDelta, 0, containerWidth * 0.3, 1, 0)
+			targetOpacity = mapAndClamp(logoDelta, 0, containerWidth * 0.7, 1, 0)
 			logo.style.opacity = targetOpacity
 		})
 		
 	})	
 }
 
-const moveLogos = function() {
-	const yPositionTop = window.pageYOffset
-	const containerWidth = container.offsetWidth
-	const containerXPos = container.getBoundingClientRect().left
-	
-	const totalHeight = bodyTag.getBoundingClientRect().height - window.innerHeight
-	// const bound = containerWidth - ()
-	
-	movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (containerWidth / 4), (containerWidth / 4))
-	
-	
-	rows.forEach((logoRow, index) => {
-		// offset = (index + 1) * 0.2
-		// offset = 0 - offset
-		
-		delay = index * 30
-		// const rowWidth = logoRow.getBoundingClientRect().width
-		// const numberOfLogos = logoRow.querySelectorAll("img")
-		
-		// movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (rowWidth / 3), (rowWidth / 3))
-		
-		if (index % 1 === 0) {
-			movement = 0 - movement
-		}
-		
-		
-		logoRow.style.transform = `translateX(${movement + delay}px)`
-		
-		// if (index === 1) {
-		// 	console.log(movement)
-		// }
-		
-		// if (index == 0 || index == 3){
-		// 	offset = -0.3
-		// }
-		// else if (index == 1 || index == 2) {
-		// 	offset = -0.4
-		// }
-		
-		// logoRow.style.transform = `translateX(${(movement * offset)}px)`
-	})
-	
-}
-
 document.addEventListener("scroll", function(){
-	moveLogos()
-	fadeLogos()
+	fadeAndMoveLogos()
 })
 document.addEventListener("resize", function(){
-	moveLogos()
-	fadeLogos()
+	fadeAndMoveLogos()
 })
 
-moveLogos()
-fadeLogos()
+fadeAndMoveLogos()
