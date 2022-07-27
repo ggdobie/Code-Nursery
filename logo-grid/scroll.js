@@ -10,10 +10,6 @@ function map(value, low1, high1, low2, high2) {
   return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
 }
 
-function easeInOutCubic(t) {
-  return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-}
-
 function mapAndClamp(value, low1, high1, low2, high2) {
   return clamp(
 	map(value, low1, high1, low2, high2),
@@ -49,8 +45,7 @@ const fadeLogos = function() {
 }
 
 const moveLogos = function() {
-	let yPositionTop = 0
-	yPositionTop = window.pageYOffset
+	const yPositionTop = window.pageYOffset
 	const containerWidth = container.offsetWidth
 	const containerXPos = container.getBoundingClientRect().left
 	
