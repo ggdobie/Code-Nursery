@@ -1,4 +1,5 @@
-const container = document.querySelector(".client-list")
+const sectionTag =document.querySelector(".client-list") 
+const container = document.querySelector(".logo-grid-container")
 const rows = document.querySelectorAll(".client-logo-row")
 const bodyTag = document.querySelector("body")
 
@@ -21,13 +22,13 @@ function mapAndClamp(value, low1, high1, low2, high2) {
 const fadeAndMoveLogos = function() {
 	const yPositionTop = window.pageYOffset
 	const containerWidth = container.offsetWidth
-	const containerMidPoint = containerWidth / 2
 	const containerYPos = container.getBoundingClientRect().top
 	const containerXPos = container.getBoundingClientRect().left
 	
-	const totalHeight = bodyTag.getBoundingClientRect().height - window.innerHeight
+	const sectionY = sectionTag.offsetTop
+	const sectionHeight = sectionTag.getBoundingClientRect().height
 	
-
+	const totalHeight = bodyTag.getBoundingClientRect().height - window.innerHeight
 	
 	rows.forEach((logoRow, index) => {
 		
@@ -41,16 +42,23 @@ const fadeAndMoveLogos = function() {
 			delay = 1.5
 		}
 		
-		
-		movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (rowWidth / 4), (rowWidth / 4))
-		
-		// REVERSE DIRECTION OF  EVERY SECOND ROW
-		if (index % 2 === 0) {
-			movement = 0 - movement
+		if (yPositionTop > (sectionY - sectionHeight) && yPositionTop < (sectionY + sectionHeight)) {
+				
+			// movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (rowWidth / 4), (rowWidth / 4))
+			movement = mapAndClamp(yPositionTop, sectionY - window.innerHeight, sectionY + window.innerHeight, 0 - (rowWidth / 4), (rowWidth / 4))
+			
+			if (index % 2 === 0) {
+				movement = 0 - movement
+			}
+			
+			logoRow.style.transform = `translateX(${movement * delay}px)`
 		}
 		
+		// movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (rowWidth / 4), (rowWidth / 4))
+		
+		// REVERSE DIRECTION OF  EVERY SECOND ROW
+		
 		// MOVE THE ROWS
-		logoRow.style.transform = `translateX(${movement * delay}px)`
 		
 		// FADE LOGOS DEPENDING ON THEIR PROXIMITY TO THE CENTRE
 		const logos = logoRow.querySelectorAll("img")
