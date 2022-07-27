@@ -1,7 +1,6 @@
 const sectionTag =document.querySelector(".client-list") 
-const container = document.querySelector(".logo-grid-container")
-const rows = document.querySelectorAll(".client-logo-row")
-const bodyTag = document.querySelector("body")
+const logoContainer = document.querySelector(".logo-grid-container")
+const logoRows = document.querySelectorAll(".client-logo-row")
 
 function clamp(input, min, max) {
   return Math.max(min, Math.min(input, max))
@@ -20,21 +19,20 @@ function mapAndClamp(value, low1, high1, low2, high2) {
 }
 
 const fadeAndMoveLogos = function() {
-	const yPositionTop = window.pageYOffset
-	const containerWidth = container.offsetWidth
-	const containerYPos = container.getBoundingClientRect().top
-	const containerXPos = container.getBoundingClientRect().left
+	const scrollY = window.pageYOffset
 	
 	const sectionY = sectionTag.offsetTop
 	const sectionHeight = sectionTag.getBoundingClientRect().height
 	
-	const totalHeight = bodyTag.getBoundingClientRect().height - window.innerHeight
-	
-	rows.forEach((logoRow, index) => {
+	const containerWidth = logoContainer.offsetWidth
+	const containerYPos = logoContainer.getBoundingClientRect().top
+	const containerXPos = logoContainer.getBoundingClientRect().left
+		
+	logoRows.forEach((logoRow, index) => {
 		
 		const rowWidth = logoRow.getBoundingClientRect().width
-		const numberOfLogos = logoRow.querySelectorAll("img")
 		
+		// ADD HARDCODED DELAYS TO MIDDLE AND TOP ROWS
 		if (index == 1 || index == 2 ) {
 			delay = 0.9
 		}
@@ -42,38 +40,44 @@ const fadeAndMoveLogos = function() {
 			delay = 1.5
 		}
 		
-		if (yPositionTop > (sectionY - sectionHeight) && yPositionTop < (sectionY + sectionHeight)) {
-				
-			// movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (rowWidth / 4), (rowWidth / 4))
-			movement = mapAndClamp(yPositionTop, sectionY - window.innerHeight, sectionY + window.innerHeight, 0 - (rowWidth / 4), (rowWidth / 4))
+		// CHECK WHETHER THE SECTION IS VISIBLE IN THE VIEWPORT
+		if (scrollY > (sectionY - sectionHeight) && scrollY < (sectionY + sectionHeight)) {
 			
+			// MAP THE EXTREMES OF THE SCROLL Y TO RELATIVE X POSITIONS
+			movement = mapAndClamp(scrollY, sectionY - window.innerHeight, sectionY + window.innerHeight, 0 - (rowWidth / 4), (rowWidth / 4))
+			
+			// REVERSE DIRECTION OF  EVERY SECOND ROW
 			if (index % 2 === 0) {
 				movement = 0 - movement
 			}
 			
+			// MOVE THE ROWS
 			logoRow.style.transform = `translateX(${movement * delay}px)`
 		}
 		
-		// movement = mapAndClamp(yPositionTop, 0, totalHeight, 0 - (rowWidth / 4), (rowWidth / 4))
 		
-		// REVERSE DIRECTION OF  EVERY SECOND ROW
-		
-		// MOVE THE ROWS
 		
 		// FADE LOGOS DEPENDING ON THEIR PROXIMITY TO THE CENTRE
 		const logos = logoRow.querySelectorAll("img")
+		
 		logos.forEach((logo) => {
-			logoVertCenter = logo.getBoundingClientRect().width / 2	
+			
+			const fadeSeverity = 0.7
+			
+			const logoCenter = logo.getBoundingClientRect().width / 2	
+			
+			// GET THE POSITION OF THE LOGO RELATIVE TO THE CONTAINER
 			logoRelXPos = (logo.getBoundingClientRect().left - containerXPos) - (containerWidth*0.5)
+			logoDelta = logoRelXPos + logoCenter
 			
-			logoDelta = logoRelXPos + logoVertCenter
-			
-			if(logoDelta < 0) {
+			// CONVERT NEGATIVE INTEGERS TO POSITIVE
+			if (logoDelta < 0) {
 				logoDelta = 0 - logoDelta
 			}
 			
-			targetOpacity = mapAndClamp(logoDelta, 0, containerWidth * 0.7, 1, 0)
+			targetOpacity = mapAndClamp(logoDelta, 0, containerWidth * fadeSeverity, 1, 0)
 			logo.style.opacity = targetOpacity
+			
 		})
 		
 	})	
@@ -85,5 +89,3 @@ document.addEventListener("scroll", function(){
 document.addEventListener("resize", function(){
 	fadeAndMoveLogos()
 })
-
-fadeAndMoveLogos()
