@@ -12,26 +12,25 @@ body {
 }
 
 .main-container {
-  width: 10px;
-  height: 10px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  /* display: none; */
+  position: relative;
 }
 
 .masked-content {
   
+  position: absolute;
   background-color: blue;
   
   -webkit-mask-image: url("mask-slant.svg");
   mask-image: url("mask-slant.svg");
-  mask-repeat: no-repeat;
+  mask-repeat: no-repeat;  
   
-  position: absolute;
-  
-  transform-origin: bottom left;
   width: 3200px;
   height: 1150px;
   transform: translateY(calc(-100% + var(--wedge-height)));
+  transform-origin: bottom left;
   
   z-index: 1;
 }
