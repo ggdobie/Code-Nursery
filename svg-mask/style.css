@@ -1,35 +1,25 @@
-/* :root {
-  // variables
-} */
+:root {
+  --wedge-height: 300px;
+}
 
 html {
   height: 100%;
 }
 
 body {
-  font-size: 16px;
-
   width: 100%;
 	height: 100%;
-
-	display:grid;
-	justify-content:center;
-	align-items:center;
 }
 
-
-.container {
-  width: 240px;
-  height: 240px;
+.main-container {
+  width: 10px;
+  height: 10px;
   overflow: hidden;
-  
-  position: relative;
-  
-  background-color: grey;
+  /* display: none; */
 }
 
 .masked-content {
-  content: "";
+  
   background-color: blue;
   
   -webkit-mask-image: url("mask-slant.svg");
@@ -37,23 +27,44 @@ body {
   mask-repeat: no-repeat;
   
   position: absolute;
-  top: 0;
-  left: 0;
   
   transform-origin: bottom left;
-  width: 320px;
-  height: 115px;
-  transform: scale(100%) translateY(calc(-100% + 70px));
+  width: 3200px;
+  height: 1150px;
+  transform: translateY(calc(-100% + var(--wedge-height)));
+  
+  z-index: 1;
 }
 
-.content {
-  background-color: yellow;
-  width: 200px;
-  height: 200px;
-  /* animation: rotate 1s linear infinite; */
+.spiral-container {
+  position: absolute;      
+}
+
+.spiral-container.masked {
+  bottom: 0;
+  transform: translate(calc(-50% + var(--wedge-height) * 0.5), calc(50% - var(--wedge-height) * 0.6));
+}
+
+.spiral-container.main {
+  top: var(--wedge-height);
+  transform: translate(calc(-50% + var(--wedge-height) * 0.5), calc(-50% - var(--wedge-height) * 0.6));
+}
+
+.spiral-pattern {
+  background-image: url("gjc-pattern.svg");
+
+  width: 1200px;
+  height: 1200px;
+  
+  animation: rotate 6s linear infinite;
+  background-repeat: no-repeat;
+}
+
+.spiral-pattern.alt {
+  background-image: url("gjc-pattern-alt.svg");
 }
 
 @keyframes rotate {
   0% { transform: rotate(0deg) }
-  100% { transform: rotate(90deg) }
+  100% { transform: rotate(360deg) }
 }
