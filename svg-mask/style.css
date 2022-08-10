@@ -1,0 +1,59 @@
+/* :root {
+  // variables
+} */
+
+html {
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+
+  width: 100%;
+	height: 100%;
+
+	display:grid;
+	justify-content:center;
+	align-items:center;
+}
+
+
+.container {
+  width: 240px;
+  height: 240px;
+  overflow: hidden;
+  
+  position: relative;
+  
+  background-color: grey;
+}
+
+.masked-content {
+  content: "";
+  background-color: blue;
+  
+  -webkit-mask-image: url("mask-slant.svg");
+  mask-image: url("mask-slant.svg");
+  mask-repeat: no-repeat;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  transform-origin: bottom left;
+  width: 320px;
+  height: 115px;
+  transform: scale(100%) translateY(calc(-100% + 70px));
+}
+
+.content {
+  background-color: yellow;
+  width: 200px;
+  height: 200px;
+  /* animation: rotate 1s linear infinite; */
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(90deg) }
+}
